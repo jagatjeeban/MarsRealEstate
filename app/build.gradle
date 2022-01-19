@@ -57,6 +57,9 @@ dependencies {
 
     //retrofit2 library
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
-    //retrofit scalar converter
-    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    //retrofit moshi converter
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    //moshi library converts JSON string into kotlin objects
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 }
