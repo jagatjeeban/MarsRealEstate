@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 //interface that defines how retrofit talks to the web server using http requests.
 interface MarsApiService{
     @GET("realestate")
-    fun getProperties():Call<List<MarsProperty>>
+    suspend fun getProperties():List<MarsProperty>
 }
 //initializing a retrofit service object
 object MarsApi{
