@@ -62,4 +62,7 @@ dependencies {
 
     //moshi library converts JSON string into kotlin objects
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    //glide library
+    implementation "com.github.bumptech.glide:glide:$version_glide"
 }
