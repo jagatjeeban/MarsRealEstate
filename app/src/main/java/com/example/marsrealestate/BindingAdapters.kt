@@ -3,8 +3,11 @@ package com.example.marsrealestate
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.marsrealestate.network.MarsProperty
+import com.example.marsrealestate.overview.PhotoGridAdapter
 
 class BindingAdapters {
 
@@ -24,6 +27,12 @@ class BindingAdapters {
                         .error(R.drawable.ic_broken_image))
                     .into(imgView)
             }
+        }
+        @JvmStatic
+        @BindingAdapter("listData")
+        fun bindRecyclerView(recyclerView: RecyclerView, data:List<MarsProperty>?){
+            val adapter = recyclerView.adapter as PhotoGridAdapter  //casting
+            adapter.submitList(data)  //tells the RecyclerView when a new list is available.
         }
     }
 }
