@@ -5,5 +5,8 @@ import com.squareup.moshi.Json
 
 class MarsProperty(val price:Double,
                    val id:String,
-                   val type:String,
-                   @Json(name = "img_src")val imgSrcUrl:String)
+                   private val type:String,
+                   @Json(name = "img_src")val imgSrcUrl:String){
+    val isRental
+    get() = type == "rent"  //a custom getter for isRental that returns true if the object is of type "rent".
+}
