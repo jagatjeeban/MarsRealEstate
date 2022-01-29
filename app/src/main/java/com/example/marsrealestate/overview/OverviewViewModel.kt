@@ -9,17 +9,16 @@ import com.example.marsrealestate.network.MarsApi
 import com.example.marsrealestate.network.MarsProperty
 import kotlinx.coroutines.launch
 
+enum class MarsApiStatus{LOADING, ERROR, DONE}  //an enum to represent all the available statuses:
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
  */
 class OverviewViewModel : ViewModel() {
 
-    // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<MarsApiStatus>()
 
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
-        get() = _response
+    val status: LiveData<MarsApiStatus>
+        get() = _status
 
     //The internal MutableLiveData for a single MarsProperty object
     private val _properties = MutableLiveData<List<MarsProperty>>()
@@ -40,16 +39,14 @@ class OverviewViewModel : ViewModel() {
      */
     private fun getMarsRealEstateProperties() {
 
-        /*
-        The MarsApi.retrofitService.getProperties() method returns a Call object.
-        Then you can call enqueue() on that object to start the network request on a background thread.
-         */
         viewModelScope.launch {
+            _status.value = MarsApiStatus.LOADING
             try {
                 _properties.value = MarsApi.retrofitService.getProperties()
-                _response.value = "Success: Mars properties retrieved"
+                _status.value = MarsApiStatus.DONE
             } catch (e:Exception){
-                _response.value = "Failure: ${e.message}"
+                _status.value = MarsApiStatus.ERROR
+                _properties.value = ArrayList()    //setting it to an empty list clears the recyclerView
             }
         }
     }
