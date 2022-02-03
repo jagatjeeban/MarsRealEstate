@@ -4,7 +4,9 @@ package com.example.marsrealestate.overview
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.marsrealestate.R
 import com.example.marsrealestate.databinding.FragmentOverviewBinding
 import com.example.marsrealestate.network.MarsApiFilter
@@ -37,7 +39,16 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         //initializes the recyclerView adapter
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener{
+            viewModel.displayPropertyDetails(it)   //this triggers the LiveData in the view model for the navigation.
+        })
+
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            if (it != null){
+                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
+                viewModel.displayPropertyDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
         return binding.root
