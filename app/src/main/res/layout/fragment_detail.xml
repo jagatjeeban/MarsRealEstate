@@ -40,7 +40,8 @@
                 android:textSize="39sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
-                tools:text="To Rent" />
+                tools:text="To Rent"
+                android:text="@{viewModel.displayPropertyType}"/>
 
             <TextView
                 android:id="@+id/price_value_text"
@@ -51,7 +52,8 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/property_type_text"
-                tools:text="$100,000" />
+                tools:text="$100,000"
+                android:text="@{viewModel.displayPropertyPrice}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
