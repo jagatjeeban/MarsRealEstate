@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.marsrealestate.overview.OverviewFragment"
-        android:label="fragment_overview"
+        android:label="Real estate on Mars"
         tools:layout="@layout/fragment_overview" >
         <action
             android:id="@+id/action_showDetail"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.marsrealestate.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Property details"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedProperty"
